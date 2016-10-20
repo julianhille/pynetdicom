@@ -24,13 +24,13 @@ REMOTEAE = {'Address': 'localhost', 'Port': 2000, 'AET': 'OFFIS_AE'}
 
 
 def OnAssociateRequest(association):
-    print "Association requested"
-    print association
+    print("Association requested")
+    print(association)
 
 
 def OnAssociateResponse(association):
-    print "Association response received"
-    print association
+    print("Association response received")
+    print(association)
 
 
 def OnReceiveStore(SOPclass, DS):
@@ -44,7 +44,7 @@ def OnReceiveStore(SOPclass, DS):
 
 
 def OnReceiveEcho(self):
-    print "Echo received"
+    print("Echo received")
 
 
 if __name__ == '__main__':

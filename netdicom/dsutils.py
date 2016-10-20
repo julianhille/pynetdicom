@@ -5,7 +5,7 @@
 #    available at http://pynetdicom.googlecode.com
 #
 
-import StringIO
+from six import StringIO
 import dicom
 if dicom.__version_info__ >= (0, 9, 8):
     from dicom.filebase import DicomBytesIO

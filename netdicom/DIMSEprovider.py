@@ -5,10 +5,10 @@
 #    available at http://pynetdicom.googlecode.com
 #
 
-import DIMSEmessages
-import DIMSEparameters
-from DIMSEmessages import DIMSEMessage
-from DULparameters import P_DATA_ServiceParameters
+from . import DIMSEmessages
+from . import DIMSEparameters
+from .DIMSEmessages import DIMSEMessage
+from .DULparameters import P_DATA_ServiceParameters
 import time
 
 import logging

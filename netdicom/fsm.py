@@ -8,9 +8,9 @@
 # Implementation of the OSI Upper Layer Services
 # DICOM, Part 8, Section 7
 import socket
-import PDU
+from . import PDU
 import time
-import DULparameters
+from . import DULparameters
 # Finite State machine action definitions
 
 import logging

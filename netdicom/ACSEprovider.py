@@ -7,8 +7,8 @@
 
 
 # This module provides association services
-from DULparameters import *
-from PDU import MaximumLengthParameters
+from .DULparameters import *
+from .PDU import MaximumLengthParameters
 from dicom.UID import UID
 import socket
 import time

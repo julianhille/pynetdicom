@@ -18,12 +18,12 @@ import socket
 import time
 import os
 import select
-import timer
-import fsm
+from . import timer
+from . import fsm
 from struct import unpack
-from PDU import *
-import DULparameters
-import Queue
+from .PDU import *
+from . import DULparameters
+from six.moves import queue
 import logging
 
 
@@ -65,15 +65,15 @@ class DULServiceProvider(Thread):
         # current primitive and pdu
         self.primitive = None
         self.pdu = None
-        self.event = Queue.Queue()
+        self.event = qeue.Queue()
         # These variables provide communication between the DUL service
         # user and the DUL service provider. An event occurs when the DUL
         # service user writes the variable self.FromServiceUser.
         # A primitive is sent to the service user when the DUL service provider
         # writes the variable self.ToServiceUser.
         # The "None" value means that nothing happens.
-        self.ToServiceUser = Queue.Queue()
-        self.FromServiceUser = Queue.Queue()
+        self.ToServiceUser = queue.Queue()
+        self.FromServiceUser = queue.Queue()
 
         # Setup the timer and finite state machines
         self._idle_timer = None
@@ -143,7 +143,7 @@ class DULServiceProvider(Thread):
         try:
             tmp = self.ToServiceUser.get(Wait, Timeout)
             return tmp
-        except Queue.Empty:
+        except queue.Empty:
             return None
 
     def Peek(self):
@@ -220,7 +220,7 @@ class DULServiceProvider(Thread):
             self.primitive = self.FromServiceUser.get(False, None)
             self.event.put(primitive2event(self.primitive))
             return True
-        except Queue.Empty:
+        except queue.Empty:
             return False
 
     def CheckNetwork(self):
@@ -290,7 +290,7 @@ class DULServiceProvider(Thread):
 
             try:
                 evt = self.event.get(False)
-            except Queue.Empty:
+            except queue.Empty:
                 #logger.debug('%s: no event' % (self.name))
                 continue
             try:

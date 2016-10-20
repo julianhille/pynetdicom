@@ -24,24 +24,24 @@ from applicationentity import AE
 from SOPclass import PatientRootMoveSOPClass, VerificationSOPClass, \
     RTPlanStorageSOPClass
 import dicom
-from dcmqrscp import start_dcmqrscp
-import dcmtkscu
-from utils import testfiles_dir
+from .dcmqrscp import start_dcmqrscp
+from . import dcmtkscu
+from .utils import testfiles_dir
 
 # first create a partner
 start_dcmqrscp(server_port=2001, server_AET='AE1')
 for ii in range(20):
-    print
+    print()
 
 
 # call backs
 def OnAssociateRequest(association):
-    print "Association request received"
+    print("Association request received")
 
 
 def OnReceiveEcho(self):
-    print
-    print "Echo received"
+    print()
+    print("Echo received")
     return True
 
 
@@ -57,7 +57,7 @@ def OnReceiveMove(self, ident, remoteAE):
     for ii in range(nop):
         # create fake dataset
         ds = dicom.read_file(os.path.join(testfiles_dir(), "rtplan.dcm"))
-        print "sending fake dataset"
+        print("sending fake dataset")
         yield ds
 
 

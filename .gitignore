@@ -1,5 +1,8 @@
 # Backup files
 *~
+.tox
+.cache
+*.bak
 
 # Lock files used by the Emacs editor.
 .\#*

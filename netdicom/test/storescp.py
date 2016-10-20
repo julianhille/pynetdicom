@@ -24,8 +24,8 @@ import time
 from netdicom.applicationentity import AE
 from netdicom.SOPclass import *
 from dicom.dataset import Dataset, FileDataset
-import dcmtkscu
-from utils import testfiles_dir
+from . import dcmtkscu
+from .utils import testfiles_dir
 
 netdicom.debug(False)
 
@@ -33,22 +33,22 @@ netdicom.debug(False)
 
 
 def OnAssociateRequest(association):
-    print "association requested"
-    print association
+    print("association requested")
+    print(association)
 
 
 def OnAssociateResponse(association):
-    print "Association response received"
+    print("Association response received")
 
 
 def OnReceiveEcho(self):
-    print
-    print "Echo received"
+    print()
+    print("Echo received")
     return True
 
 
 def OnReceiveStore(SOPClass, DS):
-    print "Received C-STORE"
+    print("Received C-STORE")
     # do something with dataset. For instance, store it.
     file_meta = Dataset()
     # CT Image Storage
@@ -62,7 +62,7 @@ def OnReceiveStore(SOPClass, DS):
     ds.is_little_endian = True
     ds.is_implicit_VR = True
     ds.save_as(filename)
-    print "File %s written" % filename
+    print("File %s written" % filename)
     # must return appropriate status
     return 0
 
@@ -82,7 +82,7 @@ dcmtkscu.run_in_term('storescu -d localhost 9999 ' +
                      os.path.join(testfiles_dir(), 'rtplan.dcm'))
 
 # start AE
-print "starting AE ...,"
+print("starting AE ...,")
 MyAE.start()
-print "done"
+print("done")
 MyAE.QuitOnKeyboardInterrupt()

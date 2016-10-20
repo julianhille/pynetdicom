@@ -60,9 +60,9 @@ These classes are:
 
 
 from struct import *
-from StringIO import StringIO
-import DULparameters
-from DIMSEparameters import *
+from six import StringIO
+from . import DULparameters
+from .DIMSEparameters import *
 
 
 class pdu:
@@ -1116,7 +1116,7 @@ def NextPDUType(Stream):
         # end of file
         return None
     else:
-        raise 'InvalidPDU'
+        raise TypeError('InvalidPDU')
 
 
 def NextSubItemType(Stream):
@@ -1137,7 +1137,7 @@ def NextSubItemType(Stream):
     elif ItemType is None:
         return None
     else:
-        raise 'Invalid Sub Item', "0x%X" % ItemType
+        raise TypeError('Invalid Sub Item 0x%X' % ItemType)
 
 
 def DecodePDU(rawstring):
@@ -1158,6 +1158,6 @@ def DecodePDU(rawstring):
     elif chr == 0x07:
         PDU = A_ABORT_PDU()
     else:
-        raise 'InvalidPDUType'
+        raise TypeeError('InvalidPDUType')
     PDU.Decode(rawstring)
     return PDU

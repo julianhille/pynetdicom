@@ -1,11 +1,11 @@
 # adapted from pydicom source code
 
-from __version__ import __version__
+from .__version__ import __version__
 __version_info__ = __version__.split('.')
 
 # some imports
-from applicationentity import AE
-from SOPclass import \
+from .applicationentity import AE
+from .SOPclass import \
     VerificationSOPClass,\
     StorageSOPClass,\
     MRImageStorageSOPClass,\
@@ -55,8 +55,16 @@ import logging
 # pynetdicom defines a logger with a NullHandler only.
 # Client code have the responsability to configure
 # this logger.
+import logging
+try:
+    from logging import NullHandler
+except ImportError:
+    class NullHandler(logging.Handler):
+        def emit(self, record):
+            pass
+
 logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())
+logger.addHandler(NullHandler())
 
 # helper functions to configure the logger. This should be
 # called by the client code.

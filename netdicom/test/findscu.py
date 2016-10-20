@@ -18,13 +18,13 @@ from dicom.dataset import Dataset
 # first create a partner
 start_dcmqrscp(server_port=2001, server_AET='AE1', populate=True)
 for ii in range(20):
-    print
+    print()
 
 # call back
 
 
 def OnAssociateResponse(association):
-    print "Association response received"
+    print("Association response received")
 
 # create application entity
 MyAE = AE('localhost', 9999,
@@ -35,29 +35,29 @@ MyAE.OnAssociateResponse = OnAssociateResponse
 RemoteAE = {'Address': 'localhost', 'Port': 2001, 'AET': 'AE1'}
 
 # create association with remote AE
-print "Request association"
+print("Request association")
 assoc = MyAE.RequestAssociation(RemoteAE)
 
 
 # perform a DICOM ECHO
-print "DICOM Echo ... ",
+print("DICOM Echo ...  ")
 st = assoc.VerificationSOPClass.SCU(1)
-print 'done with status "%s"' % st
+print('done with status "%s"' % st)
 
 # send dataset using RTPlanStorageSOPClass
-print "DICOM FindSCU ... ",
+print("DICOM FindSCU ...  ")
 d = Dataset()
 d.PatientsName = '*'
 d.QueryRetrieveLevel = "PATIENT"
 st = assoc.PatientRootFindSOPClass.SCU(d, 1)
-print 'done with status "%s"' % st
+print('done with status "%s"' % st)
 
-print "Results"
+print("Results")
 for ss in st:
-    print
-    print ss
+    print()
+    print(ss)
 
-print "Release association"
+print("Release association")
 assoc.Release(0)
 
 # done

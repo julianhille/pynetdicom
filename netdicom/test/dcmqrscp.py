@@ -13,7 +13,7 @@ findscu, movescu and getscu.
 
 import os
 import time
-from utils import testfiles_dir
+from .utils import testfiles_dir
 
 config_template = """
 # Global Configuration Parametersq

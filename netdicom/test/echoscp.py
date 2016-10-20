@@ -19,17 +19,17 @@ import sys
 sys.path.append('..')
 import time
 import netdicom
-import dcmtkscu
+from . import dcmtkscu
 
 # call backs
 
 
 def OnAssociateRequest(association):
-    print "Association request received"
+    print("Association request received")
 
 
 def OnReceiveEcho(self):
-    print "Echo received"
+    print("Echo received")
     return True
 
 # create application entity

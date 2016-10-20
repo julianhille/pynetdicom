@@ -28,15 +28,15 @@ args = parser.parse_args()
 
 # callbacks
 def OnAssociateRequest(association):
-    print "association requested"
+    print("association requested")
 
 
 def OnAssociateResponse(association):
-    print "Association response received"
+    print("Association response received")
 
 
 def OnReceiveEcho(self):
-    print "Echo received"
+    print("Echo received")
 
 
 def OnReceiveStore(SOPClass, DS):
@@ -65,7 +65,7 @@ MyAE.OnReceiveStore = OnReceiveStore
 MyAE.OnReceiveEcho = OnReceiveEcho
 
 # start AE
-print "starting AE ... ",
+print("starting AE ...  ")
 MyAE.start()
-print "done"
+print("done")
 MyAE.QuitOnKeyboardInterrupt()

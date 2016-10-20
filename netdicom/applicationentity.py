@@ -12,18 +12,18 @@ import os
 import sys
 import select
 import platform
-from SOPclass import *
+from .SOPclass import *
 from dicom.UID import ExplicitVRLittleEndian, ImplicitVRLittleEndian, \
     ExplicitVRBigEndian, UID
-from DULprovider import DULServiceProvider
-from DIMSEprovider import DIMSEServiceProvider
-from ACSEprovider import ACSEServiceProvider
-from DIMSEparameters import *
-from DULparameters import *
+from .DULprovider import DULServiceProvider
+from .DIMSEprovider import DIMSEServiceProvider
+from .ACSEprovider import ACSEServiceProvider
+from .DIMSEparameters import *
+from .DULparameters import *
 from weakref import proxy
 import gc
 import struct
-import timer
+from . import timer
 
 import logging
 logger = logging.getLogger(__name__)

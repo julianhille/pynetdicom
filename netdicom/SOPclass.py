@@ -4,12 +4,13 @@
 #    See the file license.txt included with this distribution, also
 #    available at http://pynetdicom.googlecode.com
 #
-import dsutils
-from DIMSEparameters import *
-import DIMSEprovider
-import ACSEprovider
+from . import dsutils
+from .DIMSEparameters import *
+from . import DIMSEprovider
+from . import ACSEprovider
 import time
 import logging
+from six.moves import range as xrange
 
 logger = logging.getLogger(__name__)
 

@@ -92,5 +92,5 @@ class TestAssociateService(unittest.TestCase):
 
 if __name__ == '__main__':
     for ii in range(1000):
-        print ii
+        print(ii)
         unittest.main()

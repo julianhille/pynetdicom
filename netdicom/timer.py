@@ -51,4 +51,4 @@ if __name__ == '__main__':
     t.Start()
     for ii in range(32):
         time.sleep(0.2)
-        print t.Check()
+        print(t.Check())

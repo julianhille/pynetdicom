@@ -43,13 +43,13 @@ pdata = DULparameters.P_DATA_ServiceParameters()
 pdata.PresentationDataValueList = [[1, 'toto1'], [1, 'toto2']]
 
 
-print "Starting DUL2, Acceptor ... ",
+print("Starting DUL2, Acceptor ... ")
 dul2 = DULServiceProvider(Port=server_port, Name='Dul2, Acceptor')
-print "Ok."
+print("Ok.")
 
-print "Starting DUL1, Resquestor ... ",
+print("Starting DUL1, Resquestor ...  ")
 dul1 = DULServiceProvider(Port=4567, Name='Dul1, Requestor')
-print "Ok."
+print("Ok.")
 
 
 def Request():
@@ -105,7 +105,7 @@ N = 100
 for ii in range(1, N + 1):
     try:
     # print "="*50
-        print "%d/%d" % (ii, N)
+        print("%d/%d" % (ii, N))
         # print "="*50
 
         Request()

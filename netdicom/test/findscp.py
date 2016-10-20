@@ -23,25 +23,25 @@ from applicationentity import AE
 from SOPclass import PatientRootFindSOPClass, VerificationSOPClass
 import dicom
 from dicom.dataset import Dataset
-import dcmtkscu
+from . import dcmtkscu
 
 # call backs
 
 
 def OnAssociateRequest(association):
-    print "Association request received"
+    print("Association request received")
 
 
 def OnReceiveEcho(self):
-    print
-    print "Echo received"
+    print()
+    print("Echo received")
     return True
 
 
 def OnReceiveFind(self, ds):
     for ii in range(1000):
         ds.PatientsName = 'titi' + str(ii)
-        print "sending fake response: patient name: %s" % ds.PatientsName
+        print("sending fake response: patient name: %s" % ds.PatientsName)
         yield ds, 0xFF00
     # responding to find request
 

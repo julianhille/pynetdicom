@@ -53,16 +53,16 @@ else:
 
 
 def OnAssociateResponse(association):
-    print "Association response received"
+    print("Association response received")
 
 
 def OnAssociateRequest(association):
-    print "Association resquested"
+    print("Association resquested")
     return True
 
 
 def OnReceiveStore(SOPClass, DS):
-    print "Received C-STORE", DS.PatientName
+    print("Received C-STORE", DS.PatientName)
     try:
         # do something with dataset. For instance, store it.
         file_meta = Dataset()
@@ -78,7 +78,7 @@ def OnReceiveStore(SOPClass, DS):
         #ds.is_little_endian = True
         #ds.is_implicit_VR = True
         ds.save_as(filename)
-        print "File %s written" % filename
+        print("File %s written" % filename)
     except:
         pass
     # must return appropriate status
@@ -99,22 +99,22 @@ MyAE.start()
 RemoteAE = dict(Address=args.remotehost, Port=args.remoteport, AET=args.aec)
 
 # create association with remote AE
-print "Request association"
+print("Request association")
 assoc = MyAE.RequestAssociation(RemoteAE)
 
 
 # perform a DICOM ECHO
-print "DICOM Echo ... ",
+print("DICOM Echo ...  ")
 st = assoc.VerificationSOPClass.SCU(1)
-print 'done with status "%s"' % st
+print('done with status "%s"' % st)
 
-print "DICOM FindSCU ... ",
+print("DICOM FindSCU ...  ")
 d = Dataset()
 d.PatientsName = args.searchstring
 d.QueryRetrieveLevel = "PATIENT"
 d.PatientID = "*"
 st = assoc.PatientRootFindSOPClass.SCU(d, 1)
-print 'done with status "%s"' % st
+print('done with status "%s"' % st)
 
 for ss in st:
     if not ss[1]:
@@ -124,17 +124,17 @@ for ss in st:
         d.PatientID = ss[1].PatientID
     except:
         continue
-    print "Moving"
-    print d
+    print("Moving")
+    print(d)
     assoc2 = MyAE.RequestAssociation(RemoteAE)
     gen = assoc2.PatientRootMoveSOPClass.SCU(d, 'PYNETDICOM', 1)
     for gg in gen:
-        print
-        print gg
+        print()
+        print(gg)
     assoc2.Release(0)
-    print "QWEQWE"
+    print("QWEQWE")
 
-print "Release association"
+print("Release association")
 assoc.Release(0)
 
 # done

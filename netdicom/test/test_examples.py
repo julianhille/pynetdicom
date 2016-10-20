@@ -1,9 +1,9 @@
 """Run example scripts with the various PEERs running on the Dicom Test
 Server VM."""
 
-import test_config
+from . import test_config
 import os
-from utils import set_path
+from .utils import set_path
 
 set_path()
 
@@ -16,5 +16,5 @@ for pp in test_config.peers:
     files = '/data/PatientsTests/0008-Prostate_1/*'
     cmd = cmd_template % (script_dir, test_config.AET,
                           pp['aet'], pp['host'], pp['port'], files)
-    print cmd
+    print(cmd)
     os.system(cmd)
